@@ -22,7 +22,11 @@ public class Pilha<T> {
     }
 
     public boolean isEmpty() {
-        return top == null;
+        if(top == null){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

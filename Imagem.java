@@ -29,11 +29,13 @@ public class Imagem {
         Color corBorda = Color.BLACK;
 
         pilha.push(new Coord(x, y));
+        
 
         while (!pilha.isEmpty()) {
-            Coord coord = pilha.pop();
+            Coord coord = new Coord(x,y);
+            pilha.pop();
 
-            if (coord.x < 0 || coord.x >= imagem.getWidth() || coord.y < 0 || coord.y >= imagem.getHeight()) {
+            if (coord.x >= 0 || coord.x >= imagem.getWidth() || coord.y >= 0 || coord.y >= imagem.getHeight()) {
                 continue;
             }
             Color corSubs = new Color(imagem.getRGB(coord.x, coord.y));
