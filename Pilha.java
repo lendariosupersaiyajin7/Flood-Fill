@@ -1,7 +1,6 @@
 public class Pilha<T> {
-     Node<T> top;
+    Node<T> top;
 
-    
     public void push(T valor) {
         Node<T> novo = new Node<T>(valor);
         novo.proximo = top;
@@ -9,24 +8,20 @@ public class Pilha<T> {
     }
 
     public T pop() {
-        if(isEmpty()){
-            throw new RuntimeException("pilha vazia");
+        if (isEmpty()) {
+            throw new RuntimeException("pilha vazia!!! 🤣🤣🤣🤣🤣🤣🤣 ");
         } else {
             T valor = top.valor;
+            top = top.proximo;
             return valor;
         }
     }
 
-    public boolean isFUll(){
+    public boolean isFUll() {
         return false;
     }
 
     public boolean isEmpty() {
-        if(top == null){
-            return true;
-        } else {
-            return false;
-        }
+        return top == null;
     }
-
 }

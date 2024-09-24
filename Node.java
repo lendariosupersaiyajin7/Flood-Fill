@@ -1,13 +1,11 @@
 public class Node<T> {
     T valor;
     Node<T> proximo;
-    
-    
-    public Node(){
+
+    public Node() {}
+
+    public Node(T valor) {
         this.valor = valor;
-    }
-
-
-    public Node(T valor2) {
+        this.proximo = null; 
     }
 }

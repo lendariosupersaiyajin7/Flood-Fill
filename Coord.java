@@ -6,4 +6,3 @@ public class Coord {
         this.y = y;
     }
 }
-

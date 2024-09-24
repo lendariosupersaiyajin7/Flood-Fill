@@ -29,25 +29,52 @@ public class Imagem {
         Color corBorda = Color.BLACK;
 
         pilha.push(new Coord(x, y));
-        
 
         while (!pilha.isEmpty()) {
-            Coord coord = new Coord(x,y);
-            pilha.pop();
+            Coord coord = pilha.pop();
 
-            if (coord.x >= 0 || coord.x >= imagem.getWidth() || coord.y >= 0 || coord.y >= imagem.getHeight()) {
-                continue;
-            }
-            Color corSubs = new Color(imagem.getRGB(coord.x, coord.y));
+            if (coord.x >= 0 && coord.x < imagem.getWidth() && coord.y >= 0 && coord.y < imagem.getHeight()) {
+                Color corAtual = new Color(imagem.getRGB(coord.x, coord.y));
 
-            if (corSubs.equals(corBase) && !corSubs.equals(corBorda)) {
-                imagem.setRGB(coord.x, coord.y, corNova.getRGB());
+                if (corAtual.equals(corBase) && !corAtual.equals(corBorda)) {
+                    imagem.setRGB(coord.x, coord.y, corNova.getRGB());
 
-                pilha.push(new Coord(coord.x + 1, coord.y));
-                pilha.push(new Coord(coord.x - 1, coord.y));
-                pilha.push(new Coord(coord.x, coord.y + 1));
-                pilha.push(new Coord(coord.x, coord.y - 1));
+                    pilha.push(new Coord(coord.x + 1, coord.y));
+                    pilha.push(new Coord(coord.x - 1, coord.y));
+                    pilha.push(new Coord(coord.x, coord.y + 1));
+                    pilha.push(new Coord(coord.x, coord.y - 1));
+                }
             }
         }
+
+        salvarImagem("imagens/output/output.png");
+    }
+
+    public void floodFillFila(int x, int y, Color corNova){
+        Fila<Coord> fila = new Fila<>();
+        Color corBase = new Color(imagem.getRGB(x, y));
+        Color corBorda = Color.BLACK;
+
+        fila.add(new Coord(x, y));
+
+        while(!fila.isEmpty()) {
+            Coord coord = fila.remove();
+
+            if(coord.x >= 0 && coord.x < imagem.getWidth() && coord.y >= 0 && coord.y < imagem.getHeight()){
+                Color corAtual = new Color(imagem.getRGB(coord.x, coord.y));
+
+                if(corAtual.equals(corBase) && !corAtual.equals(corBorda)){
+                    imagem.setRGB(coord.x, coord.y, corNova.getRGB());
+
+                    fila.add(new Coord(coord.x, coord.y - 1));
+                    fila.add(new Coord(coord.x, coord.y + 1));
+                    fila.add(new Coord(coord.x - 1, coord.y));
+                    fila.add(new Coord(coord.x + 1, coord.y));
+                    
+                }
+            }
+        }
+
+        salvarImagem("imagens/output2/output2.png");
     }
 }
